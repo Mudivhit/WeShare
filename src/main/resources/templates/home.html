@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+        layout:decorate="~{/layout.html}">
+<head></head>
+<body>
+<div layout:fragment="contents">
+
+    <h2>My expenses</h2>
+    <a th:href="@{'/newexpense'}" id="add_expense">Add a new expense</a>
+
+<br><br>
+
+    <p id="no_expenses" th:if="${#arrays.isEmpty(getExpenses)}">You don't have any expenses!</p>
+
+    <div id="expenses">
+        <table th:unless="${#arrays.isEmpty(getExpenses)}">
+            <tr>
+                <th>When</th>
+                <th>What</th>
+                <th></th>
+                <th>How Much</th>
+            </tr>
+
+            <th:block th:each="expense : ${getExpenses}">
+            <tr>
+                <td th:text="${expense.date}"  th:id="${#ids.seq('date_')}"></td>
+                <td> <a  th:id="${#ids.seq('claim_expense_')}" th:href="@{'/claimexpense?expenseId=' + ${expense.getId}}" th:text="${expense.description}" ></a></td>
+                <td></td>
+                <td th:text="${#numbers.formatDecimal(expense.amount,1,2,'POINT')}" th:id="${#ids.seq('amount_')}"></td>
+            </tr>
+            </th:block>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th id="expenses_total" th:text="${#numbers.formatDecimal(totalExpense,1,2,'POINT')}"></th>
+            </tr>
+        </table>
+    </div>
+
+    <h2>People that owe me</h2>
+    <p id="nobody_owes" th:if="${#arrays.isEmpty(getClaims)}">Nobody owes you any money!</p>
+
+    <div>
+        <table id="they_owe_me" th:unless="${#arrays.isEmpty(getClaims)}">
+            <tr>
+                <th>Who</th>
+                <th>What</th>
+                <th>Due</th>
+                <th>How Much</th>
+            </tr>
+
+            <th:block th:each="claim : ${getClaims}">
+                <tr>
+                    <td th:text="${claim.claimedFrom.getName}"></td>
+                    <td th:text="${claim.expense.description}"> </td>
+                    <td th:text="${claim.dueDate}"></td>
+                    <td th:text="${#numbers.formatDecimal(claim.getAmount,0,2,'POINT')}"></td>
+                </tr>
+            </th:block>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th id="they_owe_me_total" th:text="${#numbers.formatDecimal(claimsTotal,1,2,'POINT')}"></th>
+            </tr>
+        </table>
+    </div>
+
+    <h2>People I owe</h2>
+    <p id="owe_nobody" th:if="${#arrays.isEmpty(unsettledClaims)}">You don't owe anyone!</p>
+
+
+    <div>
+        <table id="i_owe_them" th:unless="${#arrays.isEmpty(unsettledClaims)}">
+            <tr>
+                <th>Who</th>
+                <th>What</th>
+                <th>Due</th>
+                <th>How Much</th>
+            </tr>
+
+            <th:block th:each="uClaim : ${unsettledClaims}">
+                <tr>
+                    <td th:text="${uClaim.claimedBy.getName}"></td>
+                    <td > <a th:id="${#ids.seq('settle_')}" th:href="@{'/settleclaim?claimId=' + ${uClaim.getId}}" th:text="${uClaim.expense.description}"></a> </td>
+                    <td th:text="${uClaim.dueDate}"></td>
+                    <td th:text="${#numbers.formatDecimal(uClaim.getAmount,1,2,'POINT')}"></td>
+                </tr>
+            </th:block>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th id="i_owe_them_total" th:text="${#numbers.formatDecimal(unsettledClaimsTotal,1,2,'POINT')}"></th>
+            </tr>
+        </table>
+        <section class="nettExpenses">
+            <p id="nett_expenses" th:text="${#numbers.formatDecimal(nettExpenses,1,2,'POINT')}">
+            </p>
+        </section>
+    </div>
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns="http://www.w3.org/1999/html"
+        xmlns:th="http://www.thymeleaf.org"
+        layout:decorate="~{/layout.html}">
+<head></head>
+<body>
+<div layout:fragment="contents">
+    <h2><b>Capture an expense</b></h2>
+    <form method="post" action="/expenses">
+        <label for="description">What did you spend money on?</label></br>
+        <input type="text" id="description" name="description" autofocus required></br></br>
+
+        <label for="amount">How much did you spend?</label></br>
+        <input type="number" step="any" id="amount" name="amount" min="0" value="0" required></br></br>
+
+        <label for="date">When did you spend the money?</label></br>
+        <input type="date" id="date" name="date" value="" min="01/02/2022" placeholder="dd/mm/yyyy" required></br></br>
+
+        <button id="submit" name="submit">Submit</button>
+    </form>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+body {
+    box-sizing: border-box;
+    margin: 20px;
+    font-family: sans-serif;
+    background-color: #fdfdfd;
+}
+
+form {
+    padding: 15px;
+    width: 33%;
+    border-radius: 1px;
+    background-color: darkslategray;
+    padding: 20px;
+    height: 400px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    border-radius: 1px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #01a4aaaf;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+input[type=submit]:hover {
+    background-color: #38b0b4af;
+}
+
+button {
+    width: 40%;
+    background-color: #01a4aaaf;
+    color: black;
+    padding: 14px 20px;
+    margin: 1px 0;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+button:hover {
+    background-color: #38b0b4af;
+}
+
+h2 {
+    font-size: medium;
+}
+
+label {
+    font-size: small;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+nav {
+    display: block;
+    text-decoration: none;
+}
+
+table {
+    table-layout: fixed;
+    width: 60%;
+    border-collapse: collapse;
+}
+
+thead th:nth-child(1) {
+    width: 10%;
+}
+
+thead th:nth-child(2) {
+    width: 50%;
+}
+
+thead th:nth-child(4) {
+    width: 10%;
+}
+
+thead th:nth-child(2) {
+    width: 20%;
+}
+
+th,
+td {
+    padding: 5px;
+}
+
+td.date,
+td.text {
+    text-align: left;
+}
+
+th.money,
+td.money {
+    text-align: right;
+}
+
+td.total {
+    text-align: right;
+    font-size: larger;
+    font-weight: bold;
+}
+
+th {
+    text-align: left;
+    font-style: italic;
+}
+
+section.nettExpenses {
+    border-top: 1px solid black;
+    padding: 20px 0px 20px 0px;
+    width: 60%;
+    text-align: right;
+    font-size: x-large;
+    font-weight: bold;
+}
